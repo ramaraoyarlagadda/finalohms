@@ -42,8 +42,8 @@ public class HotelDetailsDTO {
 	}
 	@Override
 	public String toString() {
-		return "HotelDetailsDTO [hotelId=" + hotelId + ", hotelName=" + hotelName + ", hotelAddress=" + hotelAddress
-				+ ", numOfRooms=" + numOfRooms + "]";
+		return " hotelId=" + hotelId + ", hotelName=" + hotelName + ", hotelAddress=" + hotelAddress
+				+ ", numOfRooms=" + numOfRooms ;
 	}
 	
 	

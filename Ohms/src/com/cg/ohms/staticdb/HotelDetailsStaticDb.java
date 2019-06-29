@@ -20,14 +20,15 @@ public class HotelDetailsStaticDb {
 			throw new EmptyHotelListException("Hotel List is Empty");
 		}
 	}
-	public void hotelList() {
-		//hotelList.add(hotelDetailsDTO);
+
+		
+	static {
 		hotelList.add(new HotelDetailsDTO("1234", "royalpark", "kakinada", 50));
 		hotelList.add(new HotelDetailsDTO("7896", "HotelGrand", "Hyderabad", 150));
 		
-		//return hotelDetailsDTO;
+		
 	}
-//	public void 
+
 	public void setHotelList(HotelDetailsDTO hotelDetailsDTO) {
 		hotelList.add(hotelDetailsDTO);
 		

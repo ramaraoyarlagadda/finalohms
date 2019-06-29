@@ -1,6 +1,7 @@
 package com.cg.ohms.service.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.cg.ohms.dao.HotelDetailsDTO;
@@ -16,21 +17,22 @@ public class HotelDetailsImpl implements IHotel {
 	boolean flag=false;
 	public HotelDetailsDTO addHotelDetails(HotelDetailsDTO hotelDetailsEntity) throws InValidHotelIdException,
 	InValidHotelNameException, InValidHotelAddressException, InValidNumberOfRoomsException {
+		List<HotelDetailsDTO> list=new ArrayList<HotelDetailsDTO>();
+//		if( )
+		
     //int hotelId=hotelDetailsEntity.getHotelId();
     //String hotelName=hotelDetailsEntity.getHotelName();
     //String hotelAddress=hotelDetailsEntity.getHotelAddress();
     //int noofRooms=hotelDetailsEntity.getNumOfRooms();
-
+     HotelDetailsStaticDb hotelDetailsStaticDb=new HotelDetailsStaticDb();
+     hotelDetailsStaticDb.setHotelList(hotelDetailsEntity);
 
     return hotelDetailsEntity;
    }
-    public List<HotelDetailsDTO>\
-    viewHotelDetails() throws EmptyHotelListException {
-//    for(HotelDetailsDTO view : HotelDetailsStaticDb.getHotellist()) {
-//	System.out.println(view);
-//    }
+    public ArrayList<HotelDetailsDTO> viewHotelDetails() throws EmptyHotelListException {
+
     	if(!HotelDetailsStaticDb.getHotelList().isEmpty()) {
-    		List<HotelDetailsDTO> hotelList=new ArrayList<HotelDetailsDTO>();
+    		ArrayList<HotelDetailsDTO> hotelList=new ArrayList<HotelDetailsDTO>();
     		hotelList.addAll(HotelDetailsStaticDb.getHotelList());
     		return hotelList;
     	}
@@ -38,13 +40,8 @@ public class HotelDetailsImpl implements IHotel {
     		throw new EmptyHotelListException("Hotel list is Empty");
     	}
     }
-    public int deleteHotelDetails(String hotelId) throws EmptyHotelListException{
-    	
-    	
-    	
-
-     return 0;
-      }
+     
+      
 	@Override
 	public boolean modifyByHotelName(String hotelId, String hotelName) throws EmptyHotelListException {
 		
@@ -113,6 +110,24 @@ public class HotelDetailsImpl implements IHotel {
 	
 		
 		return flag;
+	}
+	@Override
+	public List<HotelDetailsDTO> deleteHotelDetails(String hotelId) throws EmptyHotelListException {
+		List<HotelDetailsDTO> hotelList=new ArrayList<HotelDetailsDTO>();
+		HotelDetailsDTO hotelDetailsDTO=new HotelDetailsDTO();
+		Iterator<HotelDetailsDTO> hotelDeleteList=hotelList.iterator();
+		if(hotelList.isEmpty()) {
+			throw new EmptyHotelListException("sorry hotellist is empty");
+		}
+		while(hotelDeleteList.hasNext()) {
+			HotelDetailsDTO hotelDelete=(HotelDetailsDTO) hotelDeleteList.next();
+			if(hotelDetailsDTO.getHotelId()==hotelId) {
+				hotelDeleteList.remove();
+			}
+		}
+		
+		return HotelDetailsStaticDb.getHotelList();
+		
 	}
 
 
